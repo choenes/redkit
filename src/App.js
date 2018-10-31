@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SplitPane from 'react-split-pane';
+
+import brace from 'brace';
+import AceEditor from 'react-ace';
+import 'brace/mode/java';
+import 'brace/theme/github';
+
+function onChange(newValue) {
+  console.log('change',newValue);
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <SplitPane split="vertical" minSize={50} defaultSize={100}>
+        <div className="sideBar">
+            <ul>
+              <li>One</li>
+              <li>Two</li>
+            </ul>
+        </div>
+
+        <AceEditor
+          mode="java"
+          theme="github"
+          onChange={onChange}
+          name="editor"
+          editorProps={{$blockScrolling: true}}
+        />
+      </SplitPane>
     );
   }
 }
