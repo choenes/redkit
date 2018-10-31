@@ -18,7 +18,7 @@ class App extends Component {
       <SplitPane split="vertical" minSize={50} defaultSize={100}>
         <div className="sideBar">
             <ul>
-              <li>One</li>
+              <li><i class="material-icons">face</i> One</li>
               <li>Two</li>
             </ul>
         </div>
