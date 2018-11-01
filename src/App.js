@@ -1,36 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import SplitPane from 'react-split-pane';
+import Editor from './Editor' ;
+import Connection from './Connection';
+import { Route, Link } from 'react-router-dom';
 
-import brace from 'brace';
-import AceEditor from 'react-ace';
-import 'brace/mode/java';
-import 'brace/theme/github';
-
-function onChange(newValue) {
-  console.log('change',newValue);
-}
 
 class App extends Component {
   render() {
     return (
-      <SplitPane split="vertical" minSize={50} defaultSize={100}>
-        <div className="sideBar">
-            <ul>
-              <li><i class="material-icons">face</i> One</li>
-              <li>Two</li>
-            </ul>
+      <div className="nav">
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/editor">Editor</Link></li>
+          <li><Link to="/connection">Connection</Link></li>
+        </ul>
+
+        <div className="mainContainer">
+          <Route path="/editor" component={Editor}/>
+          <Route path="/connection" component={Connection}/>
         </div>
 
-        <AceEditor
-          mode="java"
-          theme="github"
-          onChange={onChange}
-          name="editor"
-          editorProps={{$blockScrolling: true}}
-        />
-      </SplitPane>
+      </div>
     );
   }
 }
