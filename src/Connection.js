@@ -34,7 +34,7 @@ class Connection extends Component {
 
     const disabled = this.state.connection.busy ? 'disabled' : '';
     const buttonClasses = `ui primary button ${disabled}`;
-    return (<div>
+    return (<div className="formContainer">
             <form className="ui attached form segment">
             <div className="two fields">
               <div className="field">
