@@ -13,10 +13,11 @@ function onChange(newValue) {
 class Editor extends Component {
   render() {
     return (
-      <SplitPane split="vertical" minSize={50} defaultSize={100}>
+      <SplitPane split="vertical" minSize={0} defaultSize={225}>
         <div className="sideBar">
             <ul>
-              <li><i class="material-icons">face</i>One</li>
+              <li>One</li>
+              <li>Two</li>
               <li>Two</li>
             </ul>
         </div>
