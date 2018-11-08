@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Connection extends Component {
+  try = 0;
+
   constructor(props){
     super(props);
     this.state = {
-      connection: props.connection ? props.connection : {}
+      connection: props.connection ? props.connection : {},
+      toEditor: false
     };
     this.tryConnect = this.tryConnect.bind(this);
   }
 
   tryConnect() {
-      // todo: replace this with real connection logic
-      this.state.connection.busy = true;
-      this.state.connection.error = false;
-      this.setState({connection: this.state.connection});
+    this.try += 1;
+    // todo: replace this with real connection logic
+    this.state.connection.busy = true;
+    this.state.connection.error = false;
+    this.setState({connection: this.state.connection});
 
-      setTimeout(() => {
-        this.state.connection.busy = false;
-        this.state.connection.error = true;
-        this.setState({connection: this.state.connection});
-      }, 3000);
+    setTimeout(() => {
+      this.state.connection.busy = false;
+      this.state.connection.error = true;
+      this.setState({connection: this.state.connection, toEditor: this.try > 1});
+    }, 3000);
   }
 
   render() {
+    if (this.state.toEditor === true) {
+     return <Redirect to='/editor' />
+    }
+
     const disabled = this.state.connection.busy ? 'disabled' : '';
     const buttonClasses = `ui primary button ${disabled}`;
     return (<div>
